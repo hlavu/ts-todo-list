@@ -1,14 +1,144 @@
-#img {
-  display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Mochiy Pop P One', sans-serif;
 }
 
-#canvas {
-  display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+body {
+  background: #121416;
+  color: #aeaeb2;
+}
+
+#task-list,
+#form {
+  width: 1000px;
+  max-width: 95%;
+  border: 1px solid #4b4373;
+  margin: 20px auto;
+  padding: 5px 0;
+  border-radius: 8px;
+}
+
+#task-list {
+  box-shadow: 0px 5px 70px 2px #2b255b inset;
+}
+
+#task-list h2 {
+  text-align: center;
+  padding: 10px 0;
+  font-family: 'Sacramento', cursive;
+  font-size: 50px;
+}
+
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  align-items: center;
+  border-bottom: 1px solid #2b255b;
+}
+
+.bx {
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bx:hover {
+  transform: scale(1.2);
+}
+
+#task-list li:last-child {
+  border-bottom: none;
+}
+
+#task-list label {
+  flex: 1;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 0;
+  height: 100%;
+  position: relative;
+  transition: 0.2s;
+}
+
+#task-list label:hover {
+  box-shadow: 0px 5px 70px 2px #2b255b inset;
+}
+
+#task-list input {
+  vertical-align: middle;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+#task-list input:checked ~ label {
+  text-decoration: line-through;
+}
+
+#form {
+  display: flex;
+  margin-top: 35px;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  box-shadow: 0px 10px 20px 0px #2b255b;
+}
+
+#input-control-group {
+  position: relative;
+  flex: 1;
+}
+
+#task-title {
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #959597;
+  background: inherit;
+  padding: 10px;
+  border: 1px solid #4d4576;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#task-title:focus ~ label,
+#task-title:not(:placeholder-shown) ~ label {
+  top: 0;
+  padding: 0 8px;
+  background: #121416;
+}
+
+#input-control-group label {
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  font-size: 14px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s;
+}
+
+#add-btn {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #6c59e3;
+  background: #6c59e3;
+  color: #f3f3f3;
+  border-radius: 8px;
+  transition: 0.3s;
+  height: 40px;
+  box-shadow: 0 5px #a89bebe9;
+}
+
+#add-btn:active {
+  box-shadow: 0 2px #a89bebe9;
+  transform: translateY(3px);
+}
+
+#add-btn:hover {
+  background: rgba(108, 89, 227, 0.6);
 }
