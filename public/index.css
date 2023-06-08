@@ -1,8 +1,13 @@
+:root {
+  --secondary: #4d4576;
+  --primary: #2b255b;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Mochiy Pop P One', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -22,7 +27,7 @@ body {
 }
 
 #task-list {
-  box-shadow: 0px 5px 70px 2px #2b255b inset;
+  box-shadow: 0px 5px 70px 2px var(--primary) inset;
 }
 
 #task-list h2 {
@@ -34,10 +39,10 @@ body {
 
 #task-list li {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   list-style: none;
-  align-items: center;
-  border-bottom: 1px solid #2b255b;
+  border-bottom: 1px solid var(--primary);
 }
 
 .bx {
@@ -66,10 +71,11 @@ body {
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-family: 'Mochiy Pop P One', sans-serif;
 }
 
 #task-list label:hover {
-  box-shadow: 0px 5px 70px 2px #2b255b inset;
+  box-shadow: 0px 5px 70px 2px var(--primary) inset;
 }
 
 #task-list input {
@@ -102,9 +108,8 @@ body {
   color: #959597;
   background: inherit;
   padding: 10px;
-  border: 1px solid #4d4576;
+  border: 1px solid var(--secondary);
   border-radius: 4px;
-  font-family: 'Poppins', sans-serif;
 }
 
 #task-title:focus ~ label,
@@ -115,7 +120,6 @@ body {
 }
 
 #input-control-group label {
-  font-family: 'Poppins', sans-serif;
   position: absolute;
   font-size: 14px;
   left: 12px;
@@ -125,11 +129,12 @@ body {
 }
 
 #add-btn {
+  --bgColor: #6c59e3;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   padding: 5px 10px;
-  border: 1px solid #6c59e3;
-  background: #6c59e3;
+  border: 1px solid var(--bgColor);
+  background: var(--bgColor);
   color: #f3f3f3;
   border-radius: 8px;
   transition: 0.3s;
@@ -161,8 +166,7 @@ body {
   border-left: 4px solid #d21312;
   background: #f9dddd;
   border-radius: 4px;
-
-  color: #4d4576;
+  color: var(--secondary);
   animation: slide 2s ease-in-out forwards;
 }
 

@@ -47,31 +47,39 @@ function addNewTask(task: Task) {
   checkbox.type = 'checkbox';
   checkbox.checked = task.complete;
 
-  task.complete
-    ? (label.style.textDecoration = 'line-through')
-    : (label.style.textDecoration = 'none');
-
+  styleLabel(task.complete, label);
   checkbox.addEventListener('change', () => {
     task.complete = checkbox.checked;
-    task.complete
-      ? (label.style.textDecoration = 'line-through')
-      : (label.style.textDecoration = 'none');
-
+    styleLabel(task.complete, label);
     saveTasks();
+  });
+
+  label.addEventListener('mouseover', () => {
+    li.title = task.title;
   });
 
   i.classList.add('bx', 'bx-trash');
 
   i.addEventListener('click', () => {
     li.style.display = 'none';
-    const newTask = taskList.filter((taskItem) => taskItem.id !== task.id);
-    taskList = newTask;
+    removeTask(task.id);
     saveTasks();
   });
 
   label.append(checkbox, task.title);
   li.append(label, i);
   list?.append(li);
+}
+
+function styleLabel(isCompleted: boolean, label: HTMLLabelElement) {
+  isCompleted
+    ? (label.style.textDecoration = 'line-through')
+    : (label.style.textDecoration = 'none');
+}
+
+function removeTask(taskId: string) {
+  const newTask = taskList.filter((taskItem) => taskItem.id !== taskId);
+  taskList = newTask;
 }
 
 function loadTasks(): Task[] {
