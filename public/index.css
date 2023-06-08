@@ -8,11 +8,12 @@
 body {
   background: #121416;
   color: #aeaeb2;
+  overflow-x: hidden;
 }
 
 #task-list,
 #form {
-  width: 1000px;
+  width: 900px;
   max-width: 95%;
   border: 1px solid #4b4373;
   margin: 20px auto;
@@ -46,7 +47,7 @@ body {
   transition: 0.2s;
 }
 
-.bx:hover {
+#task-list .bx:hover {
   transform: scale(1.2);
 }
 
@@ -62,6 +63,9 @@ body {
   height: 100%;
   position: relative;
   transition: 0.2s;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #task-list label:hover {
@@ -84,7 +88,6 @@ body {
   gap: 5px;
   padding: 0;
   border: none;
-  box-shadow: 0px 10px 20px 0px #2b255b;
 }
 
 #input-control-group {
@@ -141,4 +144,74 @@ body {
 
 #add-btn:hover {
   background: rgba(108, 89, 227, 0.6);
+}
+
+#toast-list {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+.toast {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  width: 260px;
+  padding: 12px 0;
+  border-left: 4px solid #d21312;
+  background: #f9dddd;
+  border-radius: 4px;
+
+  color: #4d4576;
+  animation: slide 2s ease-in-out forwards;
+}
+
+.toast .bx {
+  font-size: 22px;
+}
+
+.toast span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+.count-down {
+  position: absolute;
+  height: 4px;
+  background: #d21312;
+  bottom: 0;
+  animation: countDown 2s ease backwards;
+  animation-delay: 2s;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(200%);
+  }
+
+  to {
+    transform: translateX(-10px);
+  }
+}
+@keyframes hide {
+  10% {
+    transform: translateX(-20px);
+  }
+
+  20% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+@keyframes countDown {
+  5% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
 }

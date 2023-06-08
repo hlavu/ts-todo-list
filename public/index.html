@@ -22,9 +22,6 @@
     <title>TS todo list</title>
   </head>
   <body>
-    <ul id="task-list">
-      <h2>Your to do list</h2>
-    </ul>
     <form id="form">
       <div id="input-control-group">
         <input type="text" id="task-title" placeholder=" " />
@@ -32,6 +29,18 @@
       </div>
       <button id="add-btn" type="submit">Add task</button>
     </form>
+    <ul id="task-list">
+      <h2>Your to do list</h2>
+    </ul>
+
+    <div id="toast-list">
+      <!-- <div class="toast">
+        <i class="bx bx-error"></i>
+        <span>Task already exists.</span>
+        <span class="count-down"></span>
+      </div> -->
+    </div>
+
     <script type="module" src="/dist/index.js"></script>
   </body>
 </html>
