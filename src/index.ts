@@ -1,9 +1,12 @@
 import { v4 as uuidV4 } from 'uuid';
 
-const list = document.querySelector<HTMLUListElement>('#task-list');
+const list = document.querySelector<HTMLUListElement>('#list');
 const taskInput = document.querySelector<HTMLInputElement>('#task-title');
 const form = document.querySelector<HTMLFormElement>('#form');
 const toastList = document.querySelector<HTMLDivElement>('#toast-list');
+const deleteModal = document.querySelector<HTMLDivElement>('#delete-modal');
+const cancelBtn = document.querySelector<HTMLButtonElement>('.cancel');
+const deleteBtn = document.querySelector<HTMLButtonElement>('.delete');
 
 type Task = {
   id: string;
@@ -15,6 +18,7 @@ type Task = {
 let taskList: Task[] = loadTasks();
 
 form?.addEventListener('submit', (e) => {
+  taskList = loadTasks();
   e.preventDefault();
   if (taskInput?.value === '' || taskInput?.value === undefined) {
     showToast('Invalid task title!');
@@ -34,16 +38,19 @@ form?.addEventListener('submit', (e) => {
   };
 
   taskList.push(newTask);
-  saveTasks();
   addNewTask(newTask);
+  saveTasks(taskList, true);
   taskInput.value = '';
 });
 
 function addNewTask(task: Task) {
   const li = document.createElement('li');
+  li.id = task.id;
   const label = document.createElement('label');
   const checkbox = document.createElement('input');
   const i = document.createElement('i');
+  i.id = task.id;
+
   checkbox.type = 'checkbox';
   checkbox.checked = task.complete;
 
@@ -51,19 +58,22 @@ function addNewTask(task: Task) {
   checkbox.addEventListener('change', () => {
     task.complete = checkbox.checked;
     styleLabel(task.complete, label);
-    saveTasks();
-  });
-
-  label.addEventListener('mouseover', () => {
-    li.title = task.title;
+    saveTasks(taskList);
   });
 
   i.classList.add('bx', 'bx-trash');
 
-  i.addEventListener('click', () => {
-    li.style.display = 'none';
-    removeTask(task.id);
-    saveTasks();
+  i.addEventListener('click', (e) => {
+    taskList = loadTasks();
+    const { target } = e;
+    showModal(true);
+    cancelBtn?.addEventListener('click', () => {
+      showModal();
+    });
+    deleteBtn?.addEventListener('click', () => {
+      removeTask((target as HTMLElement).id);
+      showModal();
+    });
   });
 
   label.append(checkbox, task.title);
@@ -79,7 +89,7 @@ function styleLabel(isCompleted: boolean, label: HTMLLabelElement) {
 
 function removeTask(taskId: string) {
   const newTask = taskList.filter((taskItem) => taskItem.id !== taskId);
-  taskList = newTask;
+  saveTasks(newTask, true);
 }
 
 function loadTasks(): Task[] {
@@ -90,8 +100,15 @@ function loadTasks(): Task[] {
   return [];
 }
 
-function saveTasks() {
+function saveTasks(taskList: Task[], updateUI = false) {
   localStorage.setItem('tasks', JSON.stringify(taskList));
+  taskList = loadTasks();
+  if (updateUI) {
+    (list as HTMLElement).innerHTML = '';
+    taskList.forEach((task) => {
+      addNewTask(task);
+    });
+  }
 }
 
 function renderTask() {
@@ -104,6 +121,10 @@ function validateNewTask(taskTitle: string): boolean {
   return taskList.some(
     (task) => taskTitle.toLowerCase() === task.title.toLowerCase(),
   );
+}
+
+function showModal(show = false) {
+  deleteModal?.classList.toggle('active', show);
 }
 
 function showToast(message: string) {

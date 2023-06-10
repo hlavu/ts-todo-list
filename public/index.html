@@ -29,11 +29,28 @@
       </div>
       <button id="add-btn" type="submit">Add task</button>
     </form>
-    <ul id="task-list">
+    <div id="task-list">
       <h2>Your to do list</h2>
-    </ul>
+      <ul id="list"></ul>
+    </div>
 
     <div id="toast-list"></div>
+
+    <div id="delete-modal">
+      <div id="modal-content">
+        <i class="bx bx-error"></i>
+        <b>Are you sure?</b>
+        <p>
+          This action can not be undone... <br />
+          Task will be deleted permanently!
+        </p>
+
+        <div class="btn-group">
+          <button class="cancel btn">Cancel</button>
+          <button class="delete btn">Delete</button>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="/dist/index.js"></script>
   </body>
