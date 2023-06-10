@@ -167,7 +167,7 @@ body {
   background: #f9dddd;
   border-radius: 4px;
   color: var(--secondary);
-  animation: slide 2s ease-in-out forwards;
+  animation: slide 1s ease-in-out forwards;
 }
 
 .toast .bx {
